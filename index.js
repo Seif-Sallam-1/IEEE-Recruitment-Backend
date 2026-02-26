@@ -1,6 +1,6 @@
-require('dotenv').config({ path: './src/config/.env' });
-const express = require('express');
-const bootstrapApp = require('./src/app.controller');
+import 'dotenv/config'; 
+import express from 'express';
+import bootstrapApp from './src/app.controller.js';
 
 const app = express();
 
