@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
-  },
+  "start": "node index.js",
+  "install": "npm install --legacy-peer-deps"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
