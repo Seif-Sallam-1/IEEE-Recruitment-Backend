@@ -1,6 +1,6 @@
-const cors = require('cors');
-const connectDB = require('./DB/connectionDB');
-const registrationRouter = require('./modules/registration/registration.controller');
+import cors from 'cors';
+import connectDB from './DB/connectionDB.js';
+import registrationRouter from './modules/registration/registration.controller.js';
 
 const corsOptions = {
     origin: true, 
@@ -11,7 +11,6 @@ const port = process.env.PORT || 5000;
 
 const bootstrapApp = (app, express) => {
     connectDB();
-
     app.use(cors(corsOptions));
     app.use(express.json());
 
@@ -30,4 +29,4 @@ const bootstrapApp = (app, express) => {
     });
 };
 
-module.exports = bootstrapApp;
+export default bootstrapApp;
