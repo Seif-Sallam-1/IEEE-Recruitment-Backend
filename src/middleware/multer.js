@@ -1,27 +1,30 @@
-const multer = require('multer');
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const cloudinary = require('../utils/cloudinaryConfig');
+import multer from 'multer';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
+import cloudinary from '../utils/cloudinaryConfig.js';
 
-const fileValidation = {
-    file:["application/pdf","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document","application/vnd.ms-word"]
+export const fileValidation = {
+    file: [
+        "application/pdf", 
+        "application/msword", 
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document", 
+        "application/vnd.ms-word"
+    ]
 };
 
-const multerCloud = ({ fileTypes = fileValidation.file } = {}) => {
+export const multerCloud = ({ fileTypes = fileValidation.file } = {}) => {
     
     const storage = new CloudinaryStorage({
         cloudinary: cloudinary,
         params: {
             folder: 'ieee-recruitment-cvs', 
-            allowed_formats: fileTypes, 
-         },
+            resource_type: "auto", 
+        },
     });
 
     const upload = multer({ 
         storage, 
-        limits: { fileSize: 1024 * 1024 * 10 } 
+        limits: { fileSize: 10 * 1024 * 1024 } 
     });
     
     return upload;
 };
-
-module.exports = { fileValidation, multerCloud };

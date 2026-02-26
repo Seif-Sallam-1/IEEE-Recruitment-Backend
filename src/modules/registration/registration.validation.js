@@ -1,5 +1,5 @@
-const Joi = require('joi');
-const { Types } = require('mongoose');
+import Joi from 'joi';
+import { Types } from 'mongoose';
 
 const customId = (value, helper) => {
     return Types.ObjectId.isValid(value) ? value : helper.message("Invalid Object ID");
@@ -19,7 +19,7 @@ const fileValidationSchema = Joi.object({
     filename: Joi.string().required()  
 });
 
-const registerSchema = {
+export const registerSchema = {
     body: Joi.object({
         name: Joi.string().min(3).max(50).required(),
         whatsappNumber: Joi.string().max(16).required(),
@@ -43,7 +43,7 @@ const registerSchema = {
     })
 };
 
-const updateRegistrationSchema = {
+export const updateRegistrationSchema = {
     body: Joi.object({
         name: Joi.string().min(3).max(50),
         whatsappNumber: Joi.string().max(16),
@@ -77,10 +77,8 @@ const updateRegistrationSchema = {
     })
 };
 
-const getRegistrationSchema = {
+export const getRegistrationSchema = {
     params: Joi.object({
         id: Joi.string().custom(customId).required()
     }).required()
 };
-
-module.exports = { registerSchema, updateRegistrationSchema, getRegistrationSchema };

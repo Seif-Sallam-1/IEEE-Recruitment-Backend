@@ -1,12 +1,11 @@
-const { Router } = require("express");
-const RS = require("./registration.service");
-const RV = require("./registration.validation");
-const validation = require("../../middleware/validation");
-const { fileValidation, multerCloud } = require("../../middleware/multer");
+import { Router } from "express";
+import * as RS from "./registration.service.js";
+import * as RV from "./registration.validation.js";
+import { validation } from "../../middleware/validation.js";
+import { fileValidation, multerCloud } from "../../middleware/multer.js";
 
 const registrationRouter = Router();
 
-// POST: Register new applicant
 registrationRouter.post(
     "/register",
     multerCloud({ fileTypes: fileValidation.file }).single("cv"),
@@ -14,14 +13,12 @@ registrationRouter.post(
     RS.register
 );
 
-// GET: Fetch one applicant by ID
 registrationRouter.get(
     "/:id",
     validation(RV.getRegistrationSchema),
     RS.getRegistration
 );
 
-// PATCH: Update an applicant by ID
 registrationRouter.patch(
     "/:id",
     multerCloud({ fileTypes: fileValidation.file }).single("cv"),
@@ -29,4 +26,4 @@ registrationRouter.patch(
     RS.updateRegistration
 );
 
-module.exports = registrationRouter;
+export default registrationRouter;

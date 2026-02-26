@@ -1,4 +1,4 @@
-const validation = (schema) => {
+export const validation = (schema) => {
     return (req, res, next) => {
         let validationErrors = [];
         
@@ -28,5 +28,3 @@ const validation = (schema) => {
         return next();
     };
 };
-
-module.exports = validation;
