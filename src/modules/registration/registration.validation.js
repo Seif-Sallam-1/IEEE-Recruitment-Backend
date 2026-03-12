@@ -38,7 +38,7 @@ export const registerSchema = {
       scheme: [/https?/]
     }),
         firstPreference: Joi.string().valid(...preferencesList).required(),
-        secondPreference: Joi.string().valid(...preferencesList).required(),
+        secondPreference: Joi.string().valid(...preferencesList),
         interestReason: Joi.string().max(500).required(),
         hoursPerWeek: Joi.string().valid(...hoursList).required(),
         willingToPayMembership: Joi.string().valid('Yes', 'No', 'Maybe').required()
