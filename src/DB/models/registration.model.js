@@ -72,10 +72,12 @@ const registrationSchema = new mongoose.Schema({
     firstPreference: { 
         type: String, 
         required: true,
+        trim: true,
         enum: ['Media and Marketing', 'IT', 'PR and Logistics', 'HR', 'FR']
     },
     secondPreference: { 
         type: String, 
+        trim: true,
         enum: ['Media and Marketing', 'IT', 'PR and Logistics', 'HR', 'FR']
     },
     interestReason: { 
